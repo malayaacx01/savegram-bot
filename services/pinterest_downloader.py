@@ -41,12 +41,12 @@ async def download_pinterest_media(url: str, user_id: int) -> str | None:
                     break # exit outer loop once file is found
             
             if downloaded_file and os.path.exists(downloaded_file):
-                logger.info(f"Pinterest медиа успешно скачано: {downloaded_file}")
+                logger.info(f"Pinterest media successfully downloaded.: {downloaded_file}")
                 return downloaded_file
             else:
                 logger.error(f"Gallery-dl error: {stderr.decode()}")
                 return None
 
         except Exception as e:
-            logger.error(f"Ошибка Pinterest при скачивании медиа: {e}")
+            logger.error(f"Pinterest error downloading media: {e}")
             return None
