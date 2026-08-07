@@ -16,7 +16,7 @@ async def main():
     # 1. Launching the logger
     setup_logger()
     logger = logging.getLogger(__name__)
-    logger.info("Бот запускается...")
+    logger.info("The bot is starting up...")
 
     # 2. Initializing the bot and dispatcher
     bot = Bot(token=config.BOT_TOKEN.get_secret_value())
@@ -34,14 +34,14 @@ async def main():
     )
 
     # 5. start polling
-    logger.info("Бот успешно запущен и готов к работе!")
+    logger.info("The bot has been successfully launched and is ready to operate!")
     try:
         await bot.delete_webhook(drop_pending_updates=True)
         # Start the ydl worker queue in the background
         asyncio.create_task(ydl_service.worker())
         await dp.start_polling(bot)
     except Exception as e:
-        logger.exception(f"Критическая ошибка при работе бота: {e}")
+        logger.exception(f"Critical error during bot operation: {e}")
     finally:
         await bot.session.close()
 
@@ -49,4 +49,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
-        logging.info("Бот остановлен вручную")
+        logging.info("The bot was stopped manually.")
