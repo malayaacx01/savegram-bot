@@ -75,7 +75,7 @@ class YDLService:
                 if not future.done():
                     future.set_result(result)
             except Exception as e:
-                logger.error(f"Ошибка скачивания в воркере: {e}", exc_info=True)
+                logger.error(f"Download error in the worker: {e}", exc_info=True)
                 if not future.done():
                     future.set_result(None) # don't throw, just return None
             finally:
